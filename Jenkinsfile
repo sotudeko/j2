@@ -4,6 +4,9 @@ pipeline {
 
     environment {
         DEV_REPO = 'conan-releases'
+        REPO_USER = "admin"
+        REPO_PWD = "admin123"
+        CONAN_REMOTE = "${DEV_REPO}"
         TAG_FILE = "${WORKSPACE}/tag.json"
 		ARTEFACT_NAME="compressor"
         BUILD_DIR = "./build"
@@ -83,9 +86,16 @@ pipeline {
 			}
         }
        
-        
-
-
+        stage('Upload to Nexus Repository'){
+            steps {
+                script {                
+                    sh 'conan create . --name=${ARTEFACT_NAME} --versi${APP_VERSION}'
+                    sh 'conan list ${ARTEFACT_NAME}'
+                    sh 'conan remote login -p ${REPO_PWD} ${CONAN_REMOTE} ${REPO_USER}'
+                    sh 'conan upload -c -r ${DEV_REPO} ${ARTEFACT_NAME}/${APP_VERSION}'
+                }
+            }
+        }
     }
 }                   
 
