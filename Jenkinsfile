@@ -42,7 +42,7 @@ pipeline {
 		stage('Test'){
 				steps {
 					dir("${BUILD_DIR}"){
-						sh './$(ARTEFACT_NAME)'
+						sh './${ARTEFACT_NAME}'
 					}
 				}
 		}
