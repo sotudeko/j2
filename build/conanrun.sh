@@ -1,1 +1,0 @@
-. "/Users/solao/Development/scm/j2/build/conanrunenv-release-armv8.sh"
