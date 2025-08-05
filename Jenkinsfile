@@ -66,8 +66,7 @@ pipeline {
                     tagdata.buildTag = "${BUILD_TAG}" as String
                     tagdata.appVersion = "${BUILD_VERSION}" as String
                     tagdata.buildUrl = "${BUILD_URL}" as String
-                    //tagdata.iqScanUrl = "${IQ_SCAN_URL}" as String
-                    //tagData.promote = "no" as String
+                    tagData.promote = "no" as String
 
                     writeJSON(file: "${TAG_FILE}", json: tagdata, pretty: 4)
 
