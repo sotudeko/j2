@@ -10,21 +10,21 @@ pipeline {
     }
 
     stages {
-        stage('Install Dependencies') {
+
+        stage ('Install dependencies'){
             steps {
                 sh 'pwd'
                 sh 'rm -rf ${BUILD_DIR}'
             }
             post {
                 success {
-                    sh 'echo 'Now installing dependencies...'
+                    sh "echo 'Now installing dependencies..."
                     sh 'conan install . --output-folder=${BUILD_DIR} --build-missing'
                 }
             }
         }
-        
 
-		stage('Build') {
+       stage('Build') {
 				steps {
 					dir("${BUILD_DIR}"){
 						sh 'cmake .. -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release'
@@ -32,7 +32,7 @@ pipeline {
 				}
 				post {
 					success {
-						dir("${BUILD_DIR}") {
+						dir("${BUILD_DIR}"){
 							sh 'cmake --build .'
 						}
 					}
@@ -41,12 +41,17 @@ pipeline {
 				
 		stage('Test'){
 				steps {
-					dir("${BUILD_DIR}") {
+					dir("${BUILD_DIR}"){
 						sh './$(ARTEFACT_NAME)'
 					}
 				}
 		}
-    }
 
-}
+       
+        
+
+
+    }
+}                   
+
 
