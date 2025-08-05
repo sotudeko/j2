@@ -64,7 +64,7 @@ pipeline {
                     tagdata.buildId = "${BUILD_ID}" as String
                     tagdata.buildJob = "${JOB_NAME}" as String
                     tagdata.buildTag = "${BUILD_TAG}" as String
-                    tagdata.appVersion = "${BUILD_VERSION}" as String
+                    tagdata.appVersion = "${APP_VERSION}" as String
                     tagdata.buildUrl = "${BUILD_URL}" as String
                     tagData.promote = "no" as String
 
