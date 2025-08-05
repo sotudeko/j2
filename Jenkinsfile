@@ -19,7 +19,7 @@ pipeline {
             post {
                 success {
                     sh 'echo Now installing dependencies...'
-                    sh 'conan install . --output-folder=${BUILD_DIR} --build-missing'
+                    sh 'conan install . --output-folder=${BUILD_DIR} --build=missing'
                 }
             }
         }
